@@ -1,0 +1,82 @@
+SELECT 'SQL' AS result;
+
+SELECT title FROM films;
+
+SELECT DISTINCT country
+FROM films ;
+
+SELECT COUNT(*) FROM people ;
+
+select * from films where release_year = 2016 ; 
+
+SELECT * FROM films WHERE language = 'French' ;
+
+SELECT title, release_year FROM films WHERE language = 'Spanish' and release_year < 2000 ;
+
+SELECT title, release_year FROM films WHERE (release_year >= 1990 and release_year <= 1999) ;
+
+SELECT title, release_year FROM films WHERE release_year BETWEEN 1990 and 2000 ;
+
+SELECT title, release_year 
+FROM films 
+WHERE release_year in (1990 ,2000)
+    AND duration > 120 ;
+
+SELECT name FROM people WHERE deathdate IS NULL ;
+
+SELECT name FROM people WHERE name LIKE 'B%';
+
+select sum(duration) from films ; 
+
+
+select sum(gross) from films ; 
+
+select sum(gross) 
+from films where release_year >= 2000 ; 
+
+select title, (gross - budget) as net_profit from films ; 
+
+-- get the count(deathdate) and multiply by 100.0
+-- then divide by count(*)
+select count(*)*100/8397.0 as percentage_dead from people where deathdate is not null ; 
+
+select name from people order by name asc ; 
+
+select title from films where (release_year = 2000 or release_year = 2012) order by release_year asc; 
+
+select imdb_score, film_id from reviews order by imdb_score desc ; 
+
+
+select birthdate, name from people order by birthdate, name;
+
+select release_year, count(*) from films group by release_year;
+
+select release_year, min(gross) from films group by release_year ; 
+
+select release_year, budget, gross from films ; 
+
+-- select country, average budget, 
+--     and average gross
+
+-- from the films table
+
+-- group by country 
+
+-- where the country has more than 10 titles
+
+-- order by country
+
+-- limit to only show 5 results
+
+select country, avg(budget) as avg_budget, avg(gross) as avg_gross
+from films
+group by country
+    having count(title) > 10
+order by country
+limit 5 ;
+
+SELECT title, imdb_score
+FROM films
+JOIN reviews
+ON films.id = reviews.film_id
+WHERE title = 'To Kill a Mockingbird';
