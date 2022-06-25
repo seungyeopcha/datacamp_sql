@@ -5,7 +5,7 @@
 - 2022.03 ~ 2022.04
 
 # Tool to use
-- MySQl
+- MySQL
 
 
  
